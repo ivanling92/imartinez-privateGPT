@@ -20,3 +20,4 @@ pillow==9.0.0
 PyPDF2
 pdf2image
 ollama
+groq

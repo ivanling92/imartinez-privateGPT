@@ -9,8 +9,11 @@ import streamlit as st
 from tqdm import tqdm
 import chromadb
 import chromadb
-import ollama
 from chromadb.api.segment import API
+
+#Small agents handler
+from groq import Groq
+import ollama
 
 #PDF Handlers
 from PyPDF2 import PdfReader
@@ -45,8 +48,18 @@ from langchain.docstore.document import Document
 
 
 DEBUG = True
+OFFLINE = False
 
 pytesseract.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
+# Initialize the Groq API
+groq_api = st.secrets["GROQ"]
+
+client = Groq(
+    api_key=groq_api,
+)
+
+
+
 
 if not load_dotenv():
     print("Could not load .env file or it is empty. Please check if it exists and is readable.")
@@ -265,6 +278,32 @@ def pdf_to_image(pdf_file):
     return images
     
 
+def groq_process(text):
+    userPrompt = {"role": "user", "content": text}
+    systemPrompt = {"role": "system", "content": "You will be given chunks of text from an OCR output. You will try your best to correct typos and complete sentences in the text. Do not give any comments, just the corrected texts."}
+    messageLog = [systemPrompt, userPrompt]
+
+    try:
+        chat_completion = client.chat.completions.create(
+            messages= messageLog,
+            model="Llama3-8b-8192",
+        )
+
+    except:
+        return "Failed"
+    return chat_completion.choices[0].message.content
+
+def vainos_process(text):
+    userPrompt = {"role": "user", "content": text}
+    systemPrompt = {"role": "system", "content": "You will be given chunks of text from an OCR output. You will try your best to correct typos and complete sentences in the text.Do not give any comments, just the corrected texts."}
+
+    try:
+        response = ollama.chat(model='llama3', messages=[systemPrompt, userPrompt])
+        return response['message']['content']
+
+    except:
+        return "Failed"
+
 def extract_text_from_pdf(file):
     images = pdf_to_image(file)
     count = 0
@@ -276,25 +315,19 @@ def extract_text_from_pdf(file):
         if DEBUG:
             st.write(text)
         try:
+            if OFFLINE:
+                text = vainos_process(text)
+            else:
+                text = groq_process(text)
+        except Exception as e:
+            st.write("AI system offline, using raw text. Error: " + str(e))
+        
+        try:
             file_content += "Page: "+str(count)+"\n"+text+"\n"
         except:
             st.error("Error processing this page!")
 
     return file_content
-
-
-def vainos_process(text):
-    userPrompt = {"role": "user", "content": text}
-    systemPrompt = {"role": "system", "content": "You will be given chunks of text from an OCR output. You will try your best to correct typos and complete sentences in the text."}
-
-    try:
-        response = ollama.chat(model='llama3', messages=[userPrompt, systemPrompt])
-        return response['message']['content']
-
-    except:
-        return "Failed"
-    
-
 
 def main():
     st.title("Upload your PDFs to chat")

@@ -180,3 +180,4 @@ cython_debug/
 *.db
 .vs/imartinez-privateGPT/v17/.wsuo
 .vs/slnx.sqlite
+/.streamlit
