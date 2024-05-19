@@ -12,3 +12,11 @@ pandoc==2.3
 pypandoc==1.11
 tqdm==4.66.1
 sentence_transformers==2.2.2
+streamlit
+streamlit-awesome-table
+opencv-python
+pytesseract
+pillow==9.0.0
+PyPDF2
+pdf2image
+ollama
