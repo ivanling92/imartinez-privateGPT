@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 import argparse
+from telnetlib import DEBUGLEVEL
 import time
 import glob
 from typing import List
@@ -58,23 +59,25 @@ client = Groq(
     api_key=groq_api,
 )
 
-
-
-
 if not load_dotenv():
     print("Could not load .env file or it is empty. Please check if it exists and is readable.")
     exit(1)
 
+# Load environment variables
 embeddings_model_name = os.environ.get("EMBEDDINGS_MODEL_NAME")
 persist_directory = os.environ.get('PERSIST_DIRECTORY')
-
 model_type = os.environ.get('MODEL_TYPE')
 model_path = os.environ.get('MODEL_PATH')
 model_n_ctx = os.environ.get('MODEL_N_CTX')
 model_n_batch = int(os.environ.get('MODEL_N_BATCH',8))
 target_source_chunks = int(os.environ.get('TARGET_SOURCE_CHUNKS',4))
-
+persist_directory = os.environ.get('PERSIST_DIRECTORY')
+source_directory = os.environ.get('SOURCE_DIRECTORY','source_documents')
+embeddings_model_name = os.environ.get('EMBEDDINGS_MODEL_NAME')
+chunk_size = 500
+chunk_overlap = 50
 from constants import CHROMA_SETTINGS
+
 
 
 # Custom document loaders
@@ -186,7 +189,38 @@ def does_vectorstore_exist(persist_directory: str, embeddings: HuggingFaceEmbedd
         return False
     return True
 
-def runQuery():
+
+def ingest():
+    # Create embeddings
+    embeddings = HuggingFaceEmbeddings(model_name=embeddings_model_name)
+    # Chroma client
+    chroma_client = chromadb.PersistentClient(settings=CHROMA_SETTINGS , path=persist_directory)
+
+    if does_vectorstore_exist(persist_directory, embeddings):
+        # Update and store locally vectorstore
+        st.write(f"Appending to existing vectorstore at {persist_directory}")
+        db = Chroma(persist_directory=persist_directory, embedding_function=embeddings, client_settings=CHROMA_SETTINGS, client=chroma_client)
+        collection = db.get()
+        documents = process_documents([metadata['source'] for metadata in collection['metadatas']])
+        st.write(f"Creating embeddings. May take some minutes...")
+        for batched_chromadb_insertion in batch_chromadb_insertions(chroma_client, documents):
+            db.add_documents(batched_chromadb_insertion)
+    else:
+        # Create and store locally vectorstore
+        st.write("Creating new vectorstore")
+        documents = process_documents()
+        st.write(f"Creating embeddings. May take some minutes...")
+        # Create the db with the first batch of documents to insert
+        batched_chromadb_insertions = batch_chromadb_insertions(chroma_client, documents)
+        first_insertion = next(batched_chromadb_insertions)
+        db = Chroma.from_documents(first_insertion, embeddings, persist_directory=persist_directory, client_settings=CHROMA_SETTINGS, client=chroma_client)
+        # Add the rest of batches of documents
+        for batched_chromadb_insertion in batched_chromadb_insertions:
+            db.add_documents(batched_chromadb_insertion)
+    st.write(f"Ingestion complete! You can now use the chat interface to query your documents")
+    return
+
+def runQuery(prompt):
     # Parse the command line arguments
     args = parse_arguments()
     embeddings = HuggingFaceEmbeddings(model_name=embeddings_model_name)
@@ -207,32 +241,18 @@ def runQuery():
 
     qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever, return_source_documents= not args.hide_source)
     # Interactive questions and answers
-    while True:
-        query = input("\nEnter a query: ")
-        if query == "exit":
-            break
-        if query.strip() == "":
-            continue
+    query = prompt
+    res = qa(query)
+    answer, docs = res['result'], [] if args.hide_source else res['source_documents']
+    result = answer + "The following document was referenced: "
 
-        # Get the answer from the chain
-        start = time.time()
-        res = qa(query)
-        answer, docs = res['result'], [] if args.hide_source else res['source_documents']
-        end = time.time()
-
-        # Print the result
-        print("\n\n> Question:")
-        print(query)
-        print(f"\n> Answer (took {round(end - start, 2)} s.):")
-        print(answer)
-
-        # Print the relevant sources used for the answer
-        for document in docs:
-            print("\n> " + document.metadata["source"] + ":")
-            print(document.page_content)
+    for document in docs:
+        result += "\n" + document.metadata["source"] + ":" + document.page_content
+         
+    return result
 
 def parse_arguments():
-    parser = argparse.ArgumentParser(description='privateGPT: Ask questions to your documents without an internet connection, '
+    parser = argparse.ArgumentParser(description='Ask questions to your documents without an internet connection, '
                                                  'using the power of LLMs.')
     parser.add_argument("--hide-source", "-S", action='store_true',
                         help='Use this flag to disable printing of source documents used for answers.')
@@ -310,7 +330,8 @@ def extract_text_from_pdf(file):
     file_content = ""
     for image in images:
         count+=1
-        st.image(image)
+        if DEBUG:
+            st.image(image)
         text = pytesseract.image_to_string(image)  # Extract text from the image using Tesseract
         if DEBUG:
             st.write(text)
@@ -323,12 +344,44 @@ def extract_text_from_pdf(file):
             st.write("AI system offline, using raw text. Error: " + str(e))
         
         try:
-            file_content += "Page: "+str(count)+"\n"+text+"\n"
+            file_content += "\nPage: "+str(count)+"\n"+text+"\n"
         except:
             st.error("Error processing this page!")
 
     return file_content
 
+
+def generate_response(prompt):
+    return runQuery(prompt)
+    #Can use groq to run another filter or guardrails if needed
+
+
+def start_chat():
+    if "messages" not in st.session_state.keys():
+        st.session_state.messages = [{"role": "assistant", "content": "How may I help you? You can ask me anything about the uploaded files."}]
+    for message in st.session_state.messages:
+        with st.chat_message(message["role"]):
+            st.write(message["content"], unsafe_allow_html=True)
+    # User-provided prompt
+    if prompt := st.chat_input():
+        st.session_state.messages.append({"role": "user", "content": prompt})
+        with st.chat_message("user"):
+            st.write(prompt)
+    # Generate a new response if last message is not from assistant
+    if st.session_state.messages[-1]["role"] != "assistant":
+        with st.chat_message("assistant"):
+            with st.spinner("Thinking..."):
+                response = generate_response(prompt) 
+                st.write(response, unsafe_allow_html=True) 
+        message = {"role": "assistant", "content": response}
+        st.session_state.messages.append(message)
+
+
+#Set a variable to store first run
+if "chat" not in st.session_state.keys():
+    st.session_state.chat = False
+    
+    
 def main():
     st.title("Upload your PDFs to chat")
     uploaded_files = st.file_uploader("Choose a file", type=["txt", "pdf", "csv"], accept_multiple_files=True)
@@ -345,6 +398,7 @@ def main():
                 st.write(file_details)
     
     # Processing the content. Check if it is scanned document or not
+    file_processed = False            
     for file in uploaded_files:
         if file.type == "application/pdf":
             #check if it is scanned
@@ -356,10 +410,33 @@ def main():
                     file_content = extract_text_from_pdf(file)
                     if DEBUG:
                         st.write(file_content)
+                    #Write file content to a txt-file in source_documents folder
+                    with open("source_documents/"+file.name+".txt", "w") as text_file:
+                        text_file.write(file_content)
                     
             else:
                 if DEBUG:
                     st.write("Not Scanned PDF")
+                with open("source_documents/"+file.name, "wb") as f:
+                    f.write(file.getbuffer())
+                    if DEBUG:
+                        st.write("File received")
+                
+        else:
+            #copy the file and paste it to source_documents
+            with open("source_documents/"+file.name, "wb") as f:
+                f.write(file.getbuffer())
+                if DEBUG:
+                    st.write("File received")
+    file_processed = True
+    if file_processed and st.button("Click to start reading the documents"):
+        st.write("AI is reading the documents now. Please be patient!")
+        with st.spinner('Reading'):
+            ingest()
+        st.success("AI has read the documents successfully!")
+        
+    start_chat()
+
             
 
 if __name__ == "__main__":

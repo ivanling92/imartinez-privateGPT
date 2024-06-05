@@ -1,0 +1,139 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\ivanl\\Documents\\GitHub\\imartinez-privateGPT\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ivanl\\Documents\\GitHub\\imartinez-privateGPT\\main.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:main.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ivanl\\Documents\\GitHub\\imartinez-privateGPT\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.env||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ivanl\\Documents\\GitHub\\imartinez-privateGPT\\ingest.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ingest.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ivanl\\Documents\\GitHub\\imartinez-privateGPT\\.pre-commit-config.yaml||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.pre-commit-config.yaml||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ivanl\\Documents\\GitHub\\imartinez-privateGPT\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ivanl\\Documents\\GitHub\\imartinez-privateGPT\\requirements.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:requirements.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\ivanl\\Documents\\GitHub\\imartinez-privateGPT\\packages.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:packages.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": ".pre-commit-config.yaml",
+              "DocumentMoniker": "C:\\Users\\ivanl\\Documents\\GitHub\\imartinez-privateGPT\\.pre-commit-config.yaml",
+              "RelativeDocumentMoniker": ".pre-commit-config.yaml",
+              "ToolTip": "C:\\Users\\ivanl\\Documents\\GitHub\\imartinez-privateGPT\\.pre-commit-config.yaml",
+              "RelativeToolTip": ".pre-commit-config.yaml",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003775|",
+              "WhenOpened": "2024-05-19T15:48:50.629Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "packages.txt",
+              "DocumentMoniker": "C:\\Users\\ivanl\\Documents\\GitHub\\imartinez-privateGPT\\packages.txt",
+              "RelativeDocumentMoniker": "packages.txt",
+              "ToolTip": "C:\\Users\\ivanl\\Documents\\GitHub\\imartinez-privateGPT\\packages.txt",
+              "RelativeToolTip": "packages.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-05-19T13:40:27.204Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "requirements.txt",
+              "DocumentMoniker": "C:\\Users\\ivanl\\Documents\\GitHub\\imartinez-privateGPT\\requirements.txt",
+              "RelativeDocumentMoniker": "requirements.txt",
+              "ToolTip": "C:\\Users\\ivanl\\Documents\\GitHub\\imartinez-privateGPT\\requirements.txt",
+              "RelativeToolTip": "requirements.txt",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAEAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2024-05-19T12:45:58.213Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ingest.py",
+              "DocumentMoniker": "C:\\Users\\ivanl\\Documents\\GitHub\\imartinez-privateGPT\\ingest.py",
+              "RelativeDocumentMoniker": "ingest.py",
+              "ToolTip": "C:\\Users\\ivanl\\Documents\\GitHub\\imartinez-privateGPT\\ingest.py",
+              "RelativeToolTip": "ingest.py",
+              "ViewState": "AQIAABgAAAAAAAAAAAAAACwAAAAqAAAA",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAK1SURBVDhPdVPLaxNhEP/tZpPm1SRtk5ZWSqMXL0oFkXooCvWiFXygySE\u002BoF48CfYoCNqzgv\u002BAhR5SEHvwZHtIaWwRzKH00Ig9eKnYRCiS5rnZpJv9nJnEgwcHZme/3f09Zr5vtbW1NaXrOv6XLpcLmqbBcRx0Op2X09PTC/gbSilkMhm1s7OjDg4OlGmayrIsyXa7LWnbtsrlcqrVaqnt7W2VzWZf9OAS2sbGhorH4xgdHRXFQqEAn8\u002BHvr4\u002B1Go1jI\u002BPixC/41oqlRCNRrUeHgZbrFQq8Hq9GB4ehtvtFrDf70cwGET68z6WP32FWasg5Grj/sxZJvpIbV1nAt0wDEQiEQwODooKscuaiTjfrufx\u002BuFF6LYpJEsfMoy7zBcOIahWqzg6OhKLxWJRKg\u002BOY3PhBs5MxDB/a4pImnDaFj8O0DcNdmLwdEOhkKjSlGUW6S8/SfkblFWDftyAq12Xqncscim8wP5dP/oTszpNWWbAw2EyHmB66ztUiwCkqB\u002Bb0LhSsqeZqUnA/g206kBxCQarsoOBgQFxwGHWqwI4f3IIz1J3EIsE5bkEg3\u002B9IoIm0Gx0CcrlMjwejxBx/yHDhtlsEvg2Yu53QCkHOERumZQNAQpBx01C1EI4HJZd4BZ4fe/SaXgcq6vcIrByAB5em0AMlHoMnJiDtrq6qkZGRhCLxRAIBMQl7z9voexE6REBWjT3B0D/VXnfC7KDTZ1bYAc8gybZpuMrLR0eHko7sEmdVQtvgEYeyF1gcJPIA5SzBlvm47u7u0u3doHaiJKTwNjYmMzE570JVJe7JHtPyPZjJtjkCwc7KJPaUwIPJZPJOK0j5GA2n89n6U9FsT4F59R7YHIL9rl1VMPJPVK\u002B1sNDW1lZmUgkEj96639icXHxCh3vefpfZqhaBExTPk\u002BlUtXuF8AfQQ1xCM038CgAAAAASUVORK5CYII=",
+              "WhenOpened": "2024-05-19T12:41:07.541Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "main.py",
+              "DocumentMoniker": "C:\\Users\\ivanl\\Documents\\GitHub\\imartinez-privateGPT\\main.py",
+              "RelativeDocumentMoniker": "main.py",
+              "ToolTip": "C:\\Users\\ivanl\\Documents\\GitHub\\imartinez-privateGPT\\main.py",
+              "RelativeToolTip": "main.py",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAAABQAAAAAAAAA",
+              "Icon": "00000000-0000-0000-0000-000000000000.000000|iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAK1SURBVDhPdVPLaxNhEP/tZpPm1SRtk5ZWSqMXL0oFkXooCvWiFXygySE\u002BoF48CfYoCNqzgv\u002BAhR5SEHvwZHtIaWwRzKH00Ig9eKnYRCiS5rnZpJv9nJnEgwcHZme/3f09Zr5vtbW1NaXrOv6XLpcLmqbBcRx0Op2X09PTC/gbSilkMhm1s7OjDg4OlGmayrIsyXa7LWnbtsrlcqrVaqnt7W2VzWZf9OAS2sbGhorH4xgdHRXFQqEAn8\u002BHvr4\u002B1Go1jI\u002BPixC/41oqlRCNRrUeHgZbrFQq8Hq9GB4ehtvtFrDf70cwGET68z6WP32FWasg5Grj/sxZJvpIbV1nAt0wDEQiEQwODooKscuaiTjfrufx\u002BuFF6LYpJEsfMoy7zBcOIahWqzg6OhKLxWJRKg\u002BOY3PhBs5MxDB/a4pImnDaFj8O0DcNdmLwdEOhkKjSlGUW6S8/SfkblFWDftyAq12Xqncscim8wP5dP/oTszpNWWbAw2EyHmB66ztUiwCkqB\u002Bb0LhSsqeZqUnA/g206kBxCQarsoOBgQFxwGHWqwI4f3IIz1J3EIsE5bkEg3\u002B9IoIm0Gx0CcrlMjwejxBx/yHDhtlsEvg2Yu53QCkHOERumZQNAQpBx01C1EI4HJZd4BZ4fe/SaXgcq6vcIrByAB5em0AMlHoMnJiDtrq6qkZGRhCLxRAIBMQl7z9voexE6REBWjT3B0D/VXnfC7KDTZ1bYAc8gybZpuMrLR0eHko7sEmdVQtvgEYeyF1gcJPIA5SzBlvm47u7u0u3doHaiJKTwNjYmMzE570JVJe7JHtPyPZjJtjkCwc7KJPaUwIPJZPJOK0j5GA2n89n6U9FsT4F59R7YHIL9rl1VMPJPVK\u002B1sNDW1lZmUgkEj96639icXHxCh3vefpfZqhaBExTPk\u002BlUtXuF8AfQQ1xCM038CgAAAAASUVORK5CYII=",
+              "WhenOpened": "2024-05-19T12:24:20.36Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": ".env",
+              "DocumentMoniker": "C:\\Users\\ivanl\\Documents\\GitHub\\imartinez-privateGPT\\.env",
+              "RelativeDocumentMoniker": ".env",
+              "ToolTip": "C:\\Users\\ivanl\\Documents\\GitHub\\imartinez-privateGPT\\.env",
+              "RelativeToolTip": ".env",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-05-19T12:37:46.195Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\Users\\ivanl\\Documents\\GitHub\\imartinez-privateGPT\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "C:\\Users\\ivanl\\Documents\\GitHub\\imartinez-privateGPT\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AQIAAHUAAAAAAAAAAAAAAIwAAAAKAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-05-19T12:35:36.91Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
